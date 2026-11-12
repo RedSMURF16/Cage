@@ -1,0 +1,70 @@
+[en] -- RedSMURF
+CAGE_CHAT_TAG                                = ^4[CAGE]^1
+CAGE_CHAT_LIMIT                              = You've reached the maximum number of Cages ^4%d
+CAGE_CHAT_NO_CAGE                            = There are no Cages available
+CAGE_CHAT_NOT_ALIVE                          = The target player is not alive
+CAGE_CHAT_CREATE_NEW                         = ^3%s ^1created
+CAGE_CHAT_REMOVE_CURRENT                     = ^3%s ^1removed
+CAGE_CHAT_REMOVE_ALL                         = All Cages removed
+CAGE_CHAT_SAVE                               = Cage data saved in ^4%s
+CAGE_CHAT_SHOW_CURRENT                       = ^3%s ^1is %L
+CAGE_CHAT_SHOW_ALL_SHOWN                     = All Cages are now Shown
+CAGE_CHAT_SHOW_ALL_HIDDEN                    = All Cages are now Hidden
+CAGE_CHAT_STATUS_CURRENT                     = ^3%s ^1is %L
+CAGE_CHAT_STATUS_ALL_ENABLED                 = All Cages are now Enabled
+CAGE_CHAT_STATUS_ALL_DISABLED                = All Cages are now Disabled
+CAGE_CHAT_VOTE_DISABLED                      = Voting is disabled
+CAGE_CHAT_VOTE_COOLDOWN                      = Wait a little longer before starting another vote
+CAGE_CHAT_VOTE_FAILED                        = The vote to cage ^3%s ^1has failed
+CAGE_CHAT_VOTE_PASSED                        = The vote to cage ^3%s ^1has passed
+CAGE_CHAT_VOTE_NO_TARGETS                    = There are no alive players to vote for
+
+CAGE_CHAT_SHOWN                              = Shown
+CAGE_CHAT_HIDDEN                             = Hidden
+CAGE_CHAT_ENABLED                            = Enabled
+CAGE_CHAT_DISABLED                           = Disabled
+
+CAGE_NAV_NEXT                                = Next
+CAGE_NAV_BACK                                = Back
+CAGE_ON                                      = \y[ON]
+CAGE_OFF                                     = \r[OFF]
+CAGE_SHOWN                                   = \y[SHOWN]
+CAGE_HIDDEN                                  = \r[HIDDEN]
+CAGE_ENABLED                                 = \y[ENABLED]
+CAGE_DISABLED                                = \r[DISABLED]
+
+CAGE_MENU_TITLE                              = \dCage - Version \y%s
+CAGE_MENU_TITLE_PAGE                         = \yPage:\r
+CAGE_ROOT_CREATE                             = Create Cage
+CAGE_ROOT_EDIT                               = Edit Cage
+CAGE_ROOT_REMOVE                             = Remove Cage
+CAGE_ROOT_SAVE                               = Save Data
+CAGE_ROOT_SHOW                               = Visibility Settings
+CAGE_ROOT_STATUS                             = Status Settings
+CAGE_ROOT_NOCLIP                             = Status Noclip %L
+CAGE_ROOT_GODMODE                            = Status Godmode %L
+CAGE_ROOT_ROTATE                             = Adjust Rotation
+CAGE_ROOT_VOTE                               = Select a player to cage
+CAGE_ROOT_VOTE_CONFIRM                       = Cage \y%s\d?
+
+CAGE_EDIT_SHOW                               = Edit Visibility
+CAGE_EDIT_STATUS                             = Edit Status
+
+CAGE_REMOVE_CURRENT                          = Remove Cage >> \y%s
+CAGE_REMOVE_ALL                              = Remove all Cages
+
+CAGE_SHOW_CURRENT                            = Show Cage >> %s%s %L
+CAGE_SHOW_ALL_SHOW                           = Show all Cages
+CAGE_SHOW_ALL_HIDE                           = Hide all Cages
+
+CAGE_STATUS_CURRENT                          = Enable Cage >> %s%s %L
+CAGE_STATUS_ALL_ENABLE                       = Enable all Cages
+CAGE_STATUS_ALL_DISABLE                      = Disable all Cages
+
+CAGE_ROTATE_UP                               = Turn Up
+CAGE_ROTATE_DOWN                             = Turn Down
+CAGE_ROTATE_GROUND                           = Set on ground >> %L
+CAGE_ROTATE_PLACE                            = Place Cage
+
+CAGE_VOTE_YES                                = \wYes
+CAGE_VOTE_NO                                 = \wNo
