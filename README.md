@@ -1,9 +1,3 @@
-<div align="center">
-
-![Version](https://img.shields.io/github/v/release/RedSMURF16/Cage?label=version&color=blue) ![Total Downloads](https://img.shields.io/github/downloads/RedSMURF16/Cage/total?color=green)
-
-</div>
-
 <h1 align="center">Cage</h1>
 
 ## Description
