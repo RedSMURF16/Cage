@@ -1,6 +1,10 @@
 <h1 align="center">Cage</h1>
 
-## Description
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=LacunMfMo48"><img src="https://img.youtube.com/vi/LacunMfMo48/maxresdefault.jpg" alt="Watch on YouTube" width="600"></a>
+</p>
+
+## 📝 Description
 This plugin adds placeable Cages to Counter-Strike 1.6, allowing players to trap themselves or other players behind iron bars.
 - Place and configure Cages around the map
 - Cage and release players with opening and closing sequences
@@ -18,11 +22,11 @@ This plugin adds placeable Cages to Counter-Strike 1.6, allowing players to trap
 - Save and load Cage placements per map
 - Configure default behavior and create custom Cage presets
 
-## Requirements
+## 📋 Requirements
 - ReGameDLL
 - AMX Mod X 1.10+
 
-## Configuration
+## ⚙️ Configuration
 ```ini
 # To add a new Cage, follow the example below:
 # [Cage Name]
@@ -32,9 +36,7 @@ This plugin adds placeable Cages to Counter-Strike 1.6, allowing players to trap
 # Models and sounds cannot be changed dynamically during gameplay.
 ```
 
-## Changelog
+## 🔄 Changelog
 ```text
 * v1.0: Initial release.
 ```
-
-[![Watch on YouTube](https://img.shields.io/badge/YouTube-Watch%20Preview-red?logo=youtube)](https://www.youtube.com/watch?v=LacunMfMo48)
