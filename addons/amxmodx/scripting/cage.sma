@@ -11,9 +11,9 @@
 *   Commands:
 *       say /cage [name | all]          "Opens the Cage menu or executes the specified player(s)."
 *       say_team /cage [name | all]     "Opens the Cage menu or executes the specified player(s)."
-*       say /cage_vote                  "Opens the player voting menu."
-*       say_team /cage_vote             "Opens the player voting menu."
-*       cage_reload                     "Reloads the configuration file."
+*       say /CAGE_vote                  "Opens the player voting menu."
+*       say_team /CAGE_vote             "Opens the player voting menu."
+*       CAGE_reload                     "Reloads the configuration file."
 *
 *	Changelog:
 *       v1.0: Initial release.
@@ -73,7 +73,7 @@
 
 new const PLUGIN_VERSION[]          = "1.0"
 new const Float:DELAY_ON_LOAD       = 2.0
-new const ERROR_FILE[]              = "Cage_ERRORS.log"
+new const ERROR_FILE[]              = "CAGE_ERRORS.log"
 
 enum
 {
@@ -132,10 +132,9 @@ enum _:MAIN_SETTINGS
     SETTING_DEFAULT_FLAGS,
     SETTING_DEFAULT_TEAM,
     SETTING_DEFAULT_HOLD_DURATION[2],
-    Float:SETTING_DEFAULT_COOLDOWN[2],
-    bool:SETTING_PLAY_SOUND_ON_DEATH,
-    bool:SETTING_WRITE_MESSAGE_ON_DEATH,
-    bool:SETTING_KILL_ALL_EXCLUDE_CALLER,
+    bool:SETTING_PLAY_SOUND_ON_CAGE,
+    bool:SETTING_WRITE_MESSAGE_ON_CAGE,
+    bool:SETTING_CAGE_ALL_EXCLUDE_CALLER,
     bool:SETTING_STRIP_WEAPONS,
     bool:SETTING_RELEASE_IF_CAGED,
     bool:SETTING_VOTE_ENABLED,
@@ -316,9 +315,9 @@ public plugin_init()
 
     register_clcmd("say /cage",       "cmdMenu", ADMIN_ACCESS, "-- Opens the Cage menu.")
     register_clcmd("say_team /cage",  "cmdMenu", ADMIN_ACCESS, "-- Opens the Cage menu.")
-    register_clcmd("say /cage_vote",        "cmdVote", ADMIN_ACCESS_VOTE, "-- Opens the player voting menu.")
-    register_clcmd("say_team /cage_vote",   "cmdVote", ADMIN_ACCESS_VOTE, "-- Opens the player voting menu.")
-    register_concmd("cage_reload",  "cmdReload", ADMIN_ACCESS, "-- Reloads the configuration file")
+    register_clcmd("say /CAGE_vote",        "cmdVote", ADMIN_ACCESS_VOTE, "-- Opens the player voting menu.")
+    register_clcmd("say_team /CAGE_vote",   "cmdVote", ADMIN_ACCESS_VOTE, "-- Opens the player voting menu.")
+    register_concmd("CAGE_reload",  "cmdReload", ADMIN_ACCESS, "-- Reloads the configuration file")
     register_dictionary("Cage.txt")
 
     g_iFwdUse = RegisterHam(Ham_Use, "info_target", "fwdUse")
@@ -419,7 +418,7 @@ public cmdMenu(id, iLevel, iCmd)
             for ( new iTarget = 1; iTarget <= g_iMaxPlayers; iTarget ++ )
             {
                 if ( !is_user_connected(iTarget) || bProcessed[iTarget]
-                || (g_eSettings[SETTING_KILL_ALL_EXCLUDE_CALLER] && iTarget == id) )
+                || (g_eSettings[SETTING_CAGE_ALL_EXCLUDE_CALLER] && iTarget == id) )
                     continue
 
                 bProcessed[iTarget] = true
@@ -463,14 +462,14 @@ public cmdVote(id, iLevel, iCmd)
 
     if ( !g_eSettings[SETTING_VOTE_ENABLED] )
     {
-        client_print_color(id, id, "%L %L", id, "cage_CHAT_TAG", id, "cage_CHAT_VOTE_DISABLED")
+        client_print_color(id, id, "%L %L", id, "CAGE_CHAT_TAG", id, "CAGE_CHAT_VOTE_DISABLED")
         return PLUGIN_HANDLED
     }
 
     if ( task_exists(CAGE_VOTE_KEY)
     || get_gametime() < g_fVoteNext )
     {
-        client_print_color(id, id, "%L %L", id, "cage_CHAT_TAG", id, "cage_CHAT_VOTE_COOLDOWN")
+        client_print_color(id, id, "%L %L", id, "CAGE_CHAT_TAG", id, "CAGE_CHAT_VOTE_COOLDOWN")
         return PLUGIN_HANDLED
     }
 
@@ -481,7 +480,7 @@ public cmdVote(id, iLevel, iCmd)
 
     if ( !iAlive )
     {
-        client_print_color(id, id, "%L %L", id, "cage_CHAT_TAG", id, "cage_CHAT_NO_VOTE_TARGETS")
+        client_print_color(id, id, "%L %L", id, "CAGE_CHAT_TAG", id, "CAGE_CHAT_NO_VOTE_TARGETS")
         return PLUGIN_HANDLED
     }
 
@@ -605,12 +604,12 @@ ReadFile()
                             parseSetting(DTYPE_INT, szValue, charsmax(szValue), g_eSettings[SETTING_DEFAULT_TEAM], charsmax(g_eSettings[SETTING_DEFAULT_TEAM]))
                         else if ( equali(szKey, "SETTING_DEFAULT_HOLD_DURATION") )
                             parseSetting(DTYPE_INT, szValue, charsmax(szValue), g_eSettings[SETTING_DEFAULT_HOLD_DURATION], charsmax(g_eSettings[SETTING_DEFAULT_HOLD_DURATION]))
-                        else if ( equali(szKey, "SETTING_PLAY_SOUND_ON_DEATH") )
-                            parseSetting(DTYPE_INT, szValue, charsmax(szValue), g_eSettings[SETTING_PLAY_SOUND_ON_DEATH], charsmax(g_eSettings[SETTING_PLAY_SOUND_ON_DEATH]))
-                        else if ( equali(szKey, "SETTING_WRITE_MESSAGE_ON_DEATH") )
-                            parseSetting(DTYPE_INT, szValue, charsmax(szValue), g_eSettings[SETTING_WRITE_MESSAGE_ON_DEATH], charsmax(g_eSettings[SETTING_WRITE_MESSAGE_ON_DEATH]))
-                        else if ( equali(szKey, "SETTING_KILL_ALL_EXCLUDE_CALLER") )
-                            parseSetting(DTYPE_INT, szValue, charsmax(szValue), g_eSettings[SETTING_KILL_ALL_EXCLUDE_CALLER], charsmax(g_eSettings[SETTING_KILL_ALL_EXCLUDE_CALLER]))
+                        else if ( equali(szKey, "SETTING_PLAY_SOUND_ON_CAGE") )
+                            parseSetting(DTYPE_INT, szValue, charsmax(szValue), g_eSettings[SETTING_PLAY_SOUND_ON_CAGE], charsmax(g_eSettings[SETTING_PLAY_SOUND_ON_CAGE]))
+                        else if ( equali(szKey, "SETTING_WRITE_MESSAGE_ON_CAGE") )
+                            parseSetting(DTYPE_INT, szValue, charsmax(szValue), g_eSettings[SETTING_WRITE_MESSAGE_ON_CAGE], charsmax(g_eSettings[SETTING_WRITE_MESSAGE_ON_CAGE]))
+                        else if ( equali(szKey, "SETTING_CAGE_ALL_EXCLUDE_CALLER") )
+                            parseSetting(DTYPE_INT, szValue, charsmax(szValue), g_eSettings[SETTING_CAGE_ALL_EXCLUDE_CALLER], charsmax(g_eSettings[SETTING_CAGE_ALL_EXCLUDE_CALLER]))
                         else if ( equali(szKey, "SETTING_STRIP_WEAPONS") )
                             parseSetting(DTYPE_INT, szValue, charsmax(szValue), g_eSettings[SETTING_STRIP_WEAPONS], charsmax(g_eSettings[SETTING_STRIP_WEAPONS]))
                         else if ( equali(szKey, "SETTING_RELEASE_IF_CAGED") )
@@ -2048,10 +2047,10 @@ stock cageCage(eCage[CAGE], id, bool:bForced = false)
     cageSound(eCage[CAGE_ID], SOUND_CLOSE, false)
     engfunc(EngFunc_SetOrigin, id, eCage[CAGE_ORIGIN_CAGE])
 
-    if ( g_eSettings[SETTING_WRITE_MESSAGE_ON_DEATH] )
+    if ( g_eSettings[SETTING_WRITE_MESSAGE_ON_CAGE] )
         cageMessage(id, bForced)
 
-    if ( g_eSettings[SETTING_PLAY_SOUND_ON_DEATH] )
+    if ( g_eSettings[SETTING_PLAY_SOUND_ON_CAGE] )
         for ( new i = 1; i <= g_iMaxPlayers; i ++ )
             cageSound(i, SOUND_CAGE)
 }
