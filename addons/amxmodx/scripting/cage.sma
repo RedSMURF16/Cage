@@ -2067,7 +2067,7 @@ stock cageSelect(eCage[CAGE], iAction)
     if ( iAction == TARGET_SELECT )
     {
         if ( eCage[CAGE_FLAGS] & FLAG_ACTIVE )  { set_pev(eCage[CAGE_ID], pev_rendercolor, Float:{0.0, 255.0, 0.0}); }
-        else                                                { set_pev(eCage[CAGE_ID], pev_rendercolor, Float:{255.0, 0.0, 0.0}); }
+        else                                    { set_pev(eCage[CAGE_ID], pev_rendercolor, Float:{255.0, 0.0, 0.0}); }
 
         set_pev(eCage[CAGE_ID], pev_renderfx, kRenderFxGlowShell)
         set_pev(eCage[CAGE_ID], pev_rendermode, kRenderTransAlpha)
