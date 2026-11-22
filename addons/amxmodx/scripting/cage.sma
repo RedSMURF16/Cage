@@ -11,9 +11,9 @@
 *   Commands:
 *       say /cage [name | all]          "Opens the Cage menu or executes the specified player(s)."
 *       say_team /cage [name | all]     "Opens the Cage menu or executes the specified player(s)."
-*       say /CAGE_vote                  "Opens the player voting menu."
-*       say_team /CAGE_vote             "Opens the player voting menu."
-*       CAGE_reload                     "Reloads the configuration file."
+*       say /cage_vote                  "Opens the player voting menu."
+*       say_team /cage_vote             "Opens the player voting menu."
+*       cage_reload                     "Reloads the configuration file."
 *
 *	Changelog:
 *       v1.0: Initial release.
@@ -410,11 +410,27 @@ public cmdMenu(id, iLevel, iCmd)
     }
 
     new iArgIndex = 2
-    new bool:bProcessed[33]
+    new bool:bProcessed[33], eCage[CAGE]
     while ( szTarget[0] )
     {
         if ( equali(szTarget, "all") )
         {
+            for ( new iTarget = 1; iTarget <= g_iMaxPlayers; iTarget ++ )
+            {
+                if ( !is_user_connected(iTarget) || bProcessed[iTarget]
+                || (g_eSettings[SETTING_CAGE_ALL_EXCLUDE_CALLER] && iTarget == id) )
+                    continue
+
+                if ( !is_user_alive(iTarget) )
+                    continue
+
+                if ( cageGet(eCage, g_ePlayerData[iTarget][PDATA_CAGE_USED]) == -1 )
+                    continue
+
+                bProcessed[iTarget] = true
+                cageToggleTarget(id, iTarget)
+            }
+
             for ( new iTarget = 1; iTarget <= g_iMaxPlayers; iTarget ++ )
             {
                 if ( !is_user_connected(iTarget) || bProcessed[iTarget]
